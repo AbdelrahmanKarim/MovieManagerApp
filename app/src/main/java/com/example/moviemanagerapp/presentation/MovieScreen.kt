@@ -19,6 +19,7 @@ import coil3.request.lifecycle
 import coil3.request.placeholder
 import com.example.moviemanagerapp.R
 import com.example.moviemanagerapp.data.models.Movie
+import com.example.moviemanagerapp.ui.composables.MovieCard
 
 
 @Composable
@@ -31,18 +32,7 @@ fun MoviesScreen(viewModel: MoviesViewModel = hiltViewModel()) {
     LazyColumn {
         items(movies, key = {movie:Movie -> movie.id} ) { movie ->
 
-            Card {
-                Column {
-                    Text(text = movie.name)
-                    AsyncImage(model = ImageRequest.Builder(context = context).data("https://thetvdb.com/"+movie.image).placeholder(
-                        R.drawable.ic_launcher_background).build()
-                        , contentDescription = null)
-
-
-
-                }
-
-            }
+            MovieCard(movie)
 
         }
     }
